@@ -5,23 +5,35 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-class Dicionario {
+class Dicionario1 {
     String [] dicionario;
     int contador = 0;
     int contador2 = 0;
     int tamanho;
     int [] dicionario2;
 
-    public Dicionario(){
+    /**
+     * Construtor padrão
+     */
+    public Dicionario1(){
         dicionario = new String[1];
         dicionario2 = new int[1];
     }
 
-    public Dicionario(int tamanho){
+    /**
+     * Construtor
+     * @param tamanho
+     */
+    public Dicionario1(int tamanho){
             dicionario = new String[tamanho];
             dicionario2 = new int[tamanho];
         this.tamanho = tamanho;
     }
+
+    /**
+     * Mostra quantos periodos faltam
+     * @return
+     */
     public int periodosFaltam(){
       int maiorPeriodo = 0;
       for(int i = 0 ; i < dicionario2.length; i ++){
@@ -31,6 +43,11 @@ class Dicionario {
       }
       return maiorPeriodo;
     }
+
+    /**
+     * adiciona no primeiro dicionario
+     * @param algo
+     */
     public void add(String algo){
         //int i = 0;
         if(!verify(algo)){
@@ -48,9 +65,21 @@ class Dicionario {
             }
         }
     }
+
+    /**
+     * Adiciona no segundo dicionario
+     * @param posicao
+     * @param periodo
+     */
     public void add2(int posicao, int periodo){
         dicionario2[posicao] = periodo;
     }
+
+    /**
+     * Procura o nome da materia e retorna a posicao dela
+     * @param algo
+     * @return
+     */
     public int search(String algo){
         int resp = 0;
         for(int i = 0; i < dicionario.length; i ++){
@@ -60,6 +89,12 @@ class Dicionario {
         }
         return resp;
     }
+
+    /**
+     * Procurar na posicao
+     * @param algo
+     * @return
+     */
     public String search(int algo){
         String resp = "Do not exist";
         for(int i = 0; i < dicionario.length; i ++){
@@ -69,6 +104,12 @@ class Dicionario {
         }
         return resp;
     }
+
+    /**
+     * Verifica se ja existe
+     * @param string
+     * @return
+     */
     public boolean verify(String string){
         boolean resp = false;
         for(int i = 0; i < dicionario.length; i ++){
@@ -78,6 +119,10 @@ class Dicionario {
         }
         return resp;
     }
+
+    /**
+     * mostrar o dicionario
+     */
     public void mostrar(){
         for(int i = 0; i < dicionario.length; i ++){
             System.out.println(dicionario[i]);
@@ -90,6 +135,12 @@ class Dicionario {
     //   }
     //
     // }
+
+    /**
+     * Mostra todos os periodos ainda nao funcional
+     * @param peridoDesejado
+     * @return
+     */
     public int getPerido(int peridoDesejado){
        String [ ] periodo;
       int contadorPeriodo = 0;
@@ -109,9 +160,7 @@ class Dicionario {
   }
 }
 
-
-
-class ConstructorMatriz3 extends Dicionario{
+class ConstructorMatriz3 extends Dicionario1{
     int [][] matriz ;
     int[][] matrizComplementar ;
     int tamanho;
@@ -121,13 +170,23 @@ class ConstructorMatriz3 extends Dicionario{
         tamanho = 1;
     }
 
+    /**
+     * Construtor
+     * @param tamanho
+     */
     public ConstructorMatriz3(int tamanho){
         matriz = new int[tamanho][tamanho];
         matrizComplementar = new int [tamanho][tamanho];
         this.tamanho = tamanho;
     }
 
-    public ArrayList<String> ligacoes(Dicionario dic, int linha){
+    /**
+     * Mostra todas as ligações
+     * @param dic
+     * @param linha
+     * @return
+     */
+    public ArrayList<String> ligacoes(Dicionario1 dic, int linha){
       ArrayList<String> list = new ArrayList<>();
         for(int i = 0 ; i < matriz.length; i ++){
           if(matriz[linha][i] == 1){
@@ -139,9 +198,22 @@ class ConstructorMatriz3 extends Dicionario{
         return list;
     }
 
+    /**
+     * coloca na posição da linha e coluna um numero desejado
+     * @param linha
+     * @param coluna
+     * @param numero
+     */
     public void buildByNumber(int linha, int coluna, int numero){
         matriz[linha][coluna] = numero;
     }
+
+    /**
+     * Verifica se existe algo na posição Linha-coluna
+     * @param linha
+     * @param coluna
+     * @return
+     */
     public boolean ifExist(int linha, int coluna){
         int verificador = matriz[coluna][linha];
         if(verificador != 0){
@@ -150,6 +222,12 @@ class ConstructorMatriz3 extends Dicionario{
             return false;
         }
     }
+
+    /**
+     * Verifica o grau do vertice
+     * @param vertice
+     * @return
+     */
     public int verificarG(int vertice){
         int contador = 0;
         int verificador ;
@@ -162,6 +240,11 @@ class ConstructorMatriz3 extends Dicionario{
         }
         return contador;
     }
+
+    /**
+     * verifica quantas posições tem 0
+     * @return
+     */
     public int verificarQV(){
         int contador = 0;
         int verificador ;
@@ -176,6 +259,11 @@ class ConstructorMatriz3 extends Dicionario{
         }
         return contador;
     }
+
+    /**
+     * Metodo para verificar se o metodo está completo ou seja todas as posições tem 1
+     * @return
+     */
     public boolean verificarCompleto(){
         boolean resp = true;
         int verificador ;
@@ -192,6 +280,10 @@ class ConstructorMatriz3 extends Dicionario{
         }
         return false;
     }
+
+    /**
+     * Completa a matriz com 1
+     */
     public void completarMatrizUmZero(){
         int verificador;
         int um = 1;
@@ -206,6 +298,10 @@ class ConstructorMatriz3 extends Dicionario{
             }
         }
     }
+
+    /**
+     * Metodo para mostrar o grafo
+     */
     public void mostrar(){
         for(int i = 0; i < tamanho; i ++){
             for (int j = 0; j < tamanho; j++){
@@ -215,7 +311,12 @@ class ConstructorMatriz3 extends Dicionario{
             System.out.print("  ");
         }
     }
-    public void mostrar1(Dicionario dic){
+
+    /**
+     * Metodo para mostrar o grafo ligando a matriz
+     * @param dic
+     */
+    public void mostrar1(Dicionario1 dic){
         for(int i = 0; i < tamanho; i ++){
             for (int j = 0; j < tamanho; j++){
                 if( i > j)
@@ -225,6 +326,12 @@ class ConstructorMatriz3 extends Dicionario{
             System.out.print("  ");
         }
     }
+
+    /**
+     * Retira a virgula da string
+     * @param string
+     * @return
+     */
     public String retirarVirgula(String string){
         String resp = "";
 
@@ -234,7 +341,11 @@ class ConstructorMatriz3 extends Dicionario{
         return resp;
     }
 
-    public void mostrar(Dicionario dic){
+    /**
+     * Metodo para mostrar a matriz(grafo)
+     * @param dic
+     */
+    public void mostrar(Dicionario1 dic){
         String resp = "";
         ArrayList<String> list = new ArrayList<>();
        for(int i =0; i < tamanho; i ++){
@@ -261,6 +372,12 @@ class ConstructorMatriz3 extends Dicionario{
            System.out.println("");
        }
     }
+
+    /**
+     * Metodo que verifica se existe 1 na linha desejada
+     * @param linha
+     * @return
+     */
     public boolean temUm(int linha){
       boolean resp = true;
       for(int i = 0 ; i < matriz.length; i ++){
@@ -270,6 +387,12 @@ class ConstructorMatriz3 extends Dicionario{
       }
       return resp;
     }
+
+    /**
+     * Metodo para verificar se existe o numero 1 na coluna desejada
+     * @param coluna
+     * @return
+     */
     public boolean temUmColuna(int coluna){
       boolean resp = true;
       for(int i = 0 ; i < matriz.length; i ++){
@@ -280,7 +403,12 @@ class ConstructorMatriz3 extends Dicionario{
       return resp;
     }
 
-    public ArrayList<String> naoApontado(Dicionario dic){
+    /**
+     * Metodo que retorna uma ArrayList com todos os vértices não apontados
+     * @param dic
+     * @return
+     */
+    public ArrayList<String> naoApontado(Dicionario1 dic){
       ArrayList<String> list = new ArrayList<>();
       for(int i = 0; i < matriz.length; i ++){
         //true = nao tem 1 ou seja linha vazia
@@ -291,10 +419,10 @@ class ConstructorMatriz3 extends Dicionario{
       }
       return list;
     }
-    public void arestasNaoApontadas(ArrayList<String> S,Dicionario dic,int coluna){
-      // ArrayList<String> list = new ArrayList<>();
-
-    }
+    /**
+     * Metodo para saber se existe ciclo
+     * @return
+     */
     public boolean ciclo(){
       boolean resp = false;
       for(int i = 0; i < matriz.length; i ++){
@@ -306,6 +434,11 @@ class ConstructorMatriz3 extends Dicionario{
       }
       return resp;
     }
+
+    /**
+     * Metodo verifica se a matriz está vazia
+     * @return
+     */
     public boolean vazio () {
   		boolean resp = true;
   		for (int i = 0; i < matriz.length; i++) {
@@ -320,6 +453,11 @@ class ConstructorMatriz3 extends Dicionario{
   		return resp;
   	}
 
+    /**
+     * Metodo para saber se existe arcos de entrada no grafo
+     * @param dest
+     * @return
+     */
     public boolean temArcoDeEntrada(int dest) {
   		boolean resp = true;
   		// int cont = 0;
@@ -334,6 +472,13 @@ class ConstructorMatriz3 extends Dicionario{
   		// }
   		return resp;
   	}
+
+    /**
+     * Metodo para saber se a string ja existe no ArrayList
+     * @param k
+     * @param list
+     * @return
+     */
   	public boolean jaExisteDentro(String k,ArrayList<String> list){
         boolean resp = false;
         for(String x: list){
@@ -376,8 +521,11 @@ class ConstructorMatriz3 extends Dicionario{
   	//     return list ;
     // }
 
-
-    public void khan(Dicionario dic){
+    /**
+     * Metodo de khan
+     * @param dic
+     */
+    public void khan(Dicionario1 dic){
       ArrayList<String> S = naoApontado(dic);
       ArrayList<String> L = new ArrayList<>();
       ArrayList<String> Nova = new ArrayList<>();
@@ -422,6 +570,10 @@ class ConstructorMatriz3 extends Dicionario{
       System.out.println("" + dic.periodosFaltam());
     }
 }
+
+/**
+ * @author Guilherme Galvão de OLiveira Silva
+ */
 public class TP3Novo{
     public static boolean existe(String k, ArrayList<String> j){
       boolean resp = false;
@@ -437,12 +589,17 @@ public class TP3Novo{
 
       return resp;
     }
+
+    /**
+     * Metodo main
+     * @param args
+     */
     public static void main(String [] args){
         ConstructorMatriz3 matriz = new ConstructorMatriz3(55);
-        Dicionario dic = new Dicionario(55);
+        Dicionario1 dic = new Dicionario1(55);
         Scanner ler = new Scanner(System.in);
         ConstructorMatriz3 matriz2 = new ConstructorMatriz3(8);
-        Dicionario dic2 = new Dicionario(8);
+        Dicionario1 dic2 = new Dicionario1(8);
         try {
             FileReader arq = new FileReader("materias.in");
 //             BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
