@@ -601,9 +601,9 @@ public class TP3Novo{
         ConstructorMatriz3 matriz2 = new ConstructorMatriz3(8);
         Dicionario1 dic2 = new Dicionario1(8);
         try {
-            FileReader arq = new FileReader("materias.in");
-//             BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
-            BufferedReader lerArq = new BufferedReader(arq);
+            // FileReader arq = new FileReader("materias.in");
+            BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
+            // BufferedReader lerArq = new BufferedReader(arq);
             String linha; // lê a primeira linha
             linha = lerArq.readLine();
             linha = lerArq.readLine();
