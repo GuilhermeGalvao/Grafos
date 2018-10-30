@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-class Dicionario1 {
+class Dicionario {
     String [] dicionario;
     int contador = 0;
     int contador2 = 0;
@@ -15,7 +15,7 @@ class Dicionario1 {
     /**
      * Construtor padrão
      */
-    public Dicionario1(){
+    public Dicionario(){
         dicionario = new String[1];
         dicionario2 = new int[1];
     }
@@ -24,7 +24,7 @@ class Dicionario1 {
      * Construtor
      * @param tamanho
      */
-    public Dicionario1(int tamanho){
+    public Dicionario(int tamanho){
             dicionario = new String[tamanho];
             dicionario2 = new int[tamanho];
         this.tamanho = tamanho;
@@ -52,16 +52,8 @@ class Dicionario1 {
         //int i = 0;
         if(!verify(algo)){
             if(contador < tamanho) {
-//                vertice x = new vertice(algo, contador);
-                // if( dicionario [0] != null) {
-                //while (dicionario[i] != null) {
-                //    i++;
-                //  }
                 dicionario[contador] = algo;
                 contador++;
-                // }else{
-                //     dicionario[0] = algo;
-                // }
             }
         }
     }
@@ -128,13 +120,6 @@ class Dicionario1 {
             System.out.println(dicionario[i]);
         }
     }
-    // public void mostrardic2(){
-    //
-    //   for(int i = 0; i < 8; i ++){
-    //     System.out.println(i + " =" + periodo[i]);
-    //   }
-    //
-    // }
 
     /**
      * Mostra todos os periodos ainda nao funcional
@@ -160,11 +145,11 @@ class Dicionario1 {
   }
 }
 
-class ConstructorMatriz3 extends Dicionario1{
+class Grafo extends Dicionario{
     int [][] matriz ;
     int[][] matrizComplementar ;
     int tamanho;
-    public ConstructorMatriz3(){
+    public Grafo(){
         matriz = new int[1][1];
         matrizComplementar = new int [1][1];
         tamanho = 1;
@@ -174,7 +159,7 @@ class ConstructorMatriz3 extends Dicionario1{
      * Construtor
      * @param tamanho
      */
-    public ConstructorMatriz3(int tamanho){
+    public Grafo(int tamanho){
         matriz = new int[tamanho][tamanho];
         matrizComplementar = new int [tamanho][tamanho];
         this.tamanho = tamanho;
@@ -186,7 +171,7 @@ class ConstructorMatriz3 extends Dicionario1{
      * @param linha
      * @return
      */
-    public ArrayList<String> ligacoes(Dicionario1 dic, int linha){
+    public ArrayList<String> ligacoes(Dicionario dic, int linha){
       ArrayList<String> list = new ArrayList<>();
         for(int i = 0 ; i < matriz.length; i ++){
           if(matriz[linha][i] == 1){
@@ -316,7 +301,7 @@ class ConstructorMatriz3 extends Dicionario1{
      * Metodo para mostrar o grafo ligando a matriz
      * @param dic
      */
-    public void mostrar1(Dicionario1 dic){
+    public void mostrar1(Dicionario dic){
         for(int i = 0; i < tamanho; i ++){
             for (int j = 0; j < tamanho; j++){
                 if( i > j)
@@ -345,7 +330,7 @@ class ConstructorMatriz3 extends Dicionario1{
      * Metodo para mostrar a matriz(grafo)
      * @param dic
      */
-    public void mostrar(Dicionario1 dic){
+    public void mostrar(Dicionario dic){
         String resp = "";
         ArrayList<String> list = new ArrayList<>();
        for(int i =0; i < tamanho; i ++){
@@ -408,7 +393,7 @@ class ConstructorMatriz3 extends Dicionario1{
      * @param dic
      * @return
      */
-    public ArrayList<String> naoApontado(Dicionario1 dic){
+    public ArrayList<String> naoApontado(Dicionario dic){
       ArrayList<String> list = new ArrayList<>();
       for(int i = 0; i < matriz.length; i ++){
         //true = nao tem 1 ou seja linha vazia
@@ -473,71 +458,21 @@ class ConstructorMatriz3 extends Dicionario1{
   		return resp;
   	}
 
-    /**
-     * Metodo para saber se a string ja existe no ArrayList
-     * @param k
-     * @param list
-     * @return
-     */
-  	public boolean jaExisteDentro(String k,ArrayList<String> list){
-        boolean resp = false;
-        for(String x: list){
-            if(k.equals(x)){
-                return true;
-            }
-        }
-        return resp;
-    }
-    // public ArrayList<String> periodosFromS(String y,String y2 ,ArrayList<String> S){
-    //     ArrayList<String> list = new ArrayList<>();
-    //     if(y2.equals(null)){
-    //         for (int i = 0; i < S.size(); i++) {
-    //             if (y.equals(S.get(i))) {
-    //                     list.add(S.get(i));
-    //             }
-    //         }
-    //     }else {
-    //         for (int i = 0; i < S.size(); i++) {
-    //             if (y.equals(S.get(i))) {
-    //                 if (!y.equals(y2)) {
-    //                     list.add(S.get(i));
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return list;
-    // }
-    // public ArrayList<ArrayList<String>> periodos(ArrayList<String> lista, ArrayList<String> S){
-  	//     ArrayList<ArrayList<String>> list = new ArrayList<>();
-  	//     for(int i = 0; i < lista.size(); i ++){
-  	//         if(i != lista.size() - 1 ) {
-    //             ArrayList<String> S2 = periodosFromS(lista.get(i), lista.get(i + 1), S);
-    //             list.add(S2);
-    //         }else{
-    //             ArrayList<String> S2 = periodosFromS(lista.get(i),null, S);
-    //             list.add(S2);
-    //         }
-    //     }
-  	//     return list ;
-    // }
-
-    /**
+      /**
      * Metodo de khan
      * @param dic
      */
-    public void khan(Dicionario1 dic){
+    public void khan(Dicionario dic){
       ArrayList<String> S = naoApontado(dic);
       ArrayList<String> L = new ArrayList<>();
       ArrayList<String> Nova = new ArrayList<>();
       String last = S.get(S.size() - 1);
       String atual = "";
       int periodo = 1;
-      // ArrayList<ArrayList<String>> list;
       int n = 1;
       while(!S.isEmpty()){
         String tmp = S.remove(0);
         dic.add2(dic.search(tmp), periodo);
-        // System.out.println(dic.search(dic.search(i)) + "-" + periodo);
 
         L.add(tmp);
         for (int i = 0; i < matriz.length ; i++ ) {
@@ -553,12 +488,6 @@ class ConstructorMatriz3 extends Dicionario1{
            last = S.get(S.size() -1);
         }
     }
-    // System.out.println("---------CIMASSS----------");
-      // dic.mostrardic2();
-
-
-            //System.out.println("-------------------");
-
       if (vazio() == true) {
         	for(String x : L){
             System.out.print(x + "-->");
@@ -574,7 +503,7 @@ class ConstructorMatriz3 extends Dicionario1{
 /**
  * @author Guilherme Galvão de OLiveira Silva
  */
-public class TP3Novo{
+public class MateriasPendentes{
     public static boolean existe(String k, ArrayList<String> j){
       boolean resp = false;
       for(String x: j){
@@ -595,11 +524,11 @@ public class TP3Novo{
      * @param args
      */
     public static void main(String [] args){
-        ConstructorMatriz3 matriz = new ConstructorMatriz3(55);
-        Dicionario1 dic = new Dicionario1(55);
+        Grafo matriz = new Grafo(55);
+        Dicionario dic = new Dicionario(55);
         Scanner ler = new Scanner(System.in);
-        ConstructorMatriz3 matriz2 = new ConstructorMatriz3(8);
-        Dicionario1 dic2 = new Dicionario1(8);
+        Grafo matriz2 = new Grafo(8);
+        Dicionario dic2 = new Dicionario(8);
         try {
             // FileReader arq = new FileReader("materias.in");
             BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
