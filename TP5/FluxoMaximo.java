@@ -124,7 +124,7 @@ class MaxFlow {
         // Return the overall flow
         return max_flow;
     }
-    int floydFurkenson2(int [][] grafo, int s, int t){
+    int floydFurkenson(int [][] grafo, int s, int t){
         int final2 = t;
         int v, u;
         int flowMax = 0;
@@ -192,12 +192,12 @@ class MaxFlow {
 
 }
 
-public class TP5 {
+public class FluxoMaximo {
     public static void main(String [] args){
         Grafos grafo;
         MaxFlow m = new MaxFlow();
         try {
-            FileReader arq = new FileReader("Arestas.in");
+            FileReader arq = new FileReader("pub.in");
 //             BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
             BufferedReader lerArq = new BufferedReader(arq);
             String linha; // lê a primeira linha
@@ -259,7 +259,7 @@ public class TP5 {
                   grafo.adicionarGrafo(tamanho - 1, Integer.parseInt(fim2[j]), Integer.MAX_VALUE);
               }
                   int maxflow = m.fordFulkerson(grafo.getMatriz(), 0, tamanho -1);
-                  int maxFlow2 = m.floydFurkenson2(grafo.getMatriz(), 0, tamanho - 1);
+                  int maxFlow2 = m.floydFurkenson(grafo.getMatriz(), 0, tamanho - 1);
                   System.out.println("MaxFlow = " + maxflow);
                   System.out.println("MaxFlow2 = " + maxFlow2);
             }else if(resp.equals("i")){
@@ -268,7 +268,7 @@ public class TP5 {
                     grafo.adicionarGrafo(0, Integer.parseInt(inicio2[i]), Integer.MAX_VALUE);
                 }
                 int maxflow = m.fordFulkerson(grafo.getMatriz(), 0, fim);
-                int maxFlow2 = m.floydFurkenson2(grafo.getMatriz(), 0, fim);
+                int maxFlow2 = m.floydFurkenson(grafo.getMatriz(), 0, fim);
                 System.out.println("MaxFlow = " + maxflow);
                 System.out.println("MaxFlow2 = " + maxFlow2);
             }else if(resp.equals("f")){
@@ -277,12 +277,12 @@ public class TP5 {
                   grafo.adicionarGrafo(tamanho - 1, Integer.parseInt(fim2[j]), Integer.MAX_VALUE);
               }
               int maxflow = m.fordFulkerson(grafo.getMatriz(), inicio, tamanho -1);
-              int maxFlow2 = m.floydFurkenson2(grafo.getMatriz(), inicio, tamanho - 1);
+              int maxFlow2 = m.floydFurkenson(grafo.getMatriz(), inicio, tamanho - 1);
               System.out.println("MaxFlow = " + maxflow);
               System.out.println("MaxFlow2 = " + maxFlow2);
             }else{
               int maxflow = m.fordFulkerson(grafo.getMatriz(), inicio, fim);
-              int maxFlow2 = m.floydFurkenson2(grafo.getMatriz(), inicio, fim);
+              int maxFlow2 = m.floydFurkenson(grafo.getMatriz(), inicio, fim);
               System.out.println("MaxFlow = " + maxflow);
               System.out.println("MaxFlow2 = " + maxFlow2);
             }

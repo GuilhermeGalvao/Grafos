@@ -5,28 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-//class vertice{
-//    String vertice;
-//    int posicao;
-//
-//    public vertice(){
-//        this.vertice = null;
-//        this.posicao = 0;
-//    }
-//    public vertice(String algo, int posicao){
-//        this.vertice = algo;
-//        this.posicao = posicao;
-//    }
-//
-//    public boolean igual(String algo){
-//        if(algo.equals(vertice)){
-//            return true;
-//        }else{
-//            return false;
-//        }
-//    }
-//
-//}
+
 class Dicionario {
     String [] dicionario;
     int contador = 0;
@@ -41,19 +20,10 @@ class Dicionario {
         this.tamanho = tamanho;
     }
     public void add(String algo){
-        //int i = 0;
         if(!verify(algo)){
             if(contador < tamanho) {
-//                vertice x = new vertice(algo, contador);
-                // if( dicionario [0] != null) {
-                //while (dicionario[i] != null) {
-                //    i++;
-                //  }
                 dicionario[contador] = algo;
                 contador++;
-                // }else{
-                //     dicionario[0] = algo;
-                // }
             }
         }
     }
@@ -93,18 +63,17 @@ class Dicionario {
 }
 
 
-
-class ConstructorMatriz3 extends Dicionario{
+class Grafo extends Dicionario{
     int [][] matriz ;
     int[][] matrizComplementar ;
     int tamanho;
-    public ConstructorMatriz3(){
+    public Grafo(){
         matriz = new int[1][1];
         matrizComplementar = new int [1][1];
         tamanho = 1;
     }
 
-    public ConstructorMatriz3(int tamanho){
+    public Grafo(int tamanho){
         matriz = new int[tamanho][tamanho];
         matrizComplementar = new int [tamanho][tamanho];
         this.tamanho = tamanho;
@@ -234,14 +203,13 @@ class ConstructorMatriz3 extends Dicionario{
 
 }
 public class TP2{
+
     public static void main(String [] args){
-        ConstructorMatriz3 matriz = new ConstructorMatriz3(11);
+        Grafo matriz = new Grafo(11);
         Dicionario dic = new Dicionario(11);
         Scanner ler = new Scanner(System.in);
         try {
-//             FileReader arq = new FileReader("materias.in");
             BufferedReader lerArq = new BufferedReader(new InputStreamReader(System.in));
-//             BufferedReader lerArq = new BufferedReader(arq);
             String linha; // lê a primeira linha
             linha = lerArq.readLine();
             ArrayList<String> list = new ArrayList<>();
@@ -255,16 +223,13 @@ public class TP2{
                if(x.charAt(x.length() - 1) != ';'){
                    String array2[] = x.split(";");
                    String array[] = array2[1].split(",");
-                   //System.out.println(array2[0]);
                    for(int j = 0; j < array.length; j ++) {
-                      //System.out.println(array[j]);
                        matriz.buildByNumber(dic.search(array2[0]),dic.search(array[j]), 1 );
                    }
                }
             }
             lerArq.close();
             matriz.mostrar(dic);
-            //dic.mostrar();
         } catch (IOException e) {
             System.err.printf("Erro na abertura do arquivo: %s.\n",
                     e.getMessage());

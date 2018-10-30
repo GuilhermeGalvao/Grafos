@@ -328,7 +328,7 @@ class No {
 */
 
 
-public class TP1Extra{
+public class PuzzleEightSolver{
   /**
     *metodo main
   */
